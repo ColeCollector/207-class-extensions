@@ -1,0 +1,13 @@
+import random
+
+headware = {"leather cap":1,"iron cap":2,"helmet":3}
+
+equipment = {}
+equipment[0] = {}
+
+x = list(headware.keys())
+randomitem = random.choice(x)
+
+equipment[0][randomitem] = headware[randomitem]
+
+print(equipment)
