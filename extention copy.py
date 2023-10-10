@@ -18,6 +18,13 @@ class NPC:
 
     randlist = [1,1,1,1,2,2,2,3,3,4]
 
+    def randItem(self,options):
+        x = list(options.keys())
+        itemName = random.choice(x)
+        number = options[itemName]
+
+        return {itemName:number}
+    
     def __init__(self,z):
 
         for i in self.stats:
@@ -43,42 +50,38 @@ class NPC:
         self.wealth = ( (self.gold*100)+(self.silver*10)+self.copper )
     
 
-        #headware
         self.headware = {"leather cap":1,"iron cap":2,"helmet":3}
+        self.armor = {"studded leather":9,"chainmail":21,"scalemail":15,"platemail":29}
+        self.shield = {"buckler":1,"embossed leather shield":2,"kite shield":4}
+
 
         self.equipment = {}
-        self.equipment[0] = {}
-
-        self.x = list(self.headware.keys())
-        self.randomitem = random.choice(self.x)
-
-        self.equipment[0][self.randomitem] = self.headware[self.randomitem]
-
-        #armor
-        self.armor = {"studded leather":9,"chainmail":21,"scalemail":15,"platemail":29}
-
-        self.equipment[1] = {}
-
-        self.x = list(self.armor.keys())
-        self.randomitem = random.choice(self.x)
-
-        self.equipment[1][self.randomitem] = self.armor[self.randomitem]
-
-        #shield
-        self.shield = {"buckler":1,"embossed leather shield":2,"kite shield":4}
-        self.equipment[2] = {}
-
-        self.x = list(self.shield.keys())
-        self.randomitem = random.choice(self.x)
-
-        self.equipment[2][self.randomitem] = self.shield[self.randomitem]
-
-        print("\nArmor:")
-        print(str ( list(self.equipment[0].keys())[0]   ))
-        print(list(self.equipment[1].keys()))
-        print(list(self.equipment[2].keys()))
+        self.equipment[0] = self.randItem(self.headware)
+        self.equipment[1] = self.randItem(self.armor)
+        self.equipment[2] = self.randItem(self.shield)
+       
 
 
+
+
+        print(f"\033[1;31;40mHP \033[0m: {self.hp}")
+        print(f"\033[1;33;40mGold \033[0m: {self.gold}")
+        print(f"\033[1;47;40mSilver \033[0m: {self.silver}")
+        print(f"\033[1;47;40mCopper \033[0m: {self.copper}")
+
+
+
+
+        print(f"Copper:{self.copper}\n")
+        print(f"Total Wealth:{self.wealth}")
+        print((list(self.equipment[0].keys()))[0])
+        print((list(self.equipment[1].keys()))[0])
+        print((list(self.equipment[2].keys()))[0])
+
+        print("\nArmor Value:")
+        print((list(self.equipment[0].values()))[0]+(list(self.equipment[1].values()))[0]+(list(self.equipment[2].values()))[0])
+
+        print("\n")
         return
 
 
